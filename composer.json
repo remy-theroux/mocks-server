@@ -1,0 +1,37 @@
+{
+    "name": "remy-theroux/mocks-server",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Rémy Théroux",
+            "email": "remy.theroux@gmail.com"
+        }
+    ],
+    "require": {
+        "amphp/http-server-router": "^1.0",
+        "amphp/http-server": "^1.0",
+        "amphp/log": "^1.0",
+        "symfony/config": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/serializer": "^4.2",
+        "symfony/property-access": "^4.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mocks\\Server\\": "src/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes",
+        "cs-fix": "php-cs-fixer fix -v --diff --allow-risky=yes",
+        "test": "phpunit"
+    }
+}

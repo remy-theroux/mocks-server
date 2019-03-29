@@ -1,0 +1,20 @@
+mocks:
+  port: 9000
+  mime_type: application/json
+  mocks:
+    get_test:
+        uri: /test
+        method: POST
+        delay: 0
+        status: 200
+        mime_type: application/json
+        raw_body: |
+          { "data": "value"}
+    post_login:
+        uri: /login
+        method: POST
+        delay: 0
+        status: 200
+        "mime_type": application/json
+        raw_body: |
+          { "data": "value"}
