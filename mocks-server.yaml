@@ -1,6 +1,5 @@
 mocks:
   port: 9000
-  mime_type: application/json
   mocks:
     -
         request:
