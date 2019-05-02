@@ -3,13 +3,10 @@ declare(strict_types=1);
 
 namespace Mocks\Server\Config;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Mocks\Server\Models\Mocks;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;

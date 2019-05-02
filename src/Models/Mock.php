@@ -5,79 +5,25 @@ namespace Mocks\Server\Models;
 
 final class Mock
 {
-    /** @var string */
-    private $uri;
+    /** @var Request */
+    private $request;
 
-    /** @var string */
-    private $method;
+    /** @var Response */
+    private $response;
 
-    /** @var int */
-    private $delay;
-
-    /** @var int */
-    private $status;
-
-    /** @var string */
-    private $mimeType;
-
-    /** @var string */
-    private $rawBody;
-
-    public function __construct(string $uri, string $method, int $delay, int $status, string $mimeType, string $rawBody)
+    public function __construct(Request $request, Response $response)
     {
-        $this->uri = $uri;
-        $this->method = $method;
-        $this->delay = $delay;
-        $this->status = $status;
-        $this->mimeType = $mimeType;
-        $this->rawBody = $rawBody;
+        $this->request = $request;
+        $this->response = $response;
     }
 
-    /**
-     * @return string
-     */
-    public function getUri(): string
+    public function getRequest(): Request
     {
-        return $this->uri;
+        return $this->request;
     }
 
-    /**
-     * @return string
-     */
-    public function getMethod(): string
+    public function getResponse(): Response
     {
-        return $this->method;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDelay(): int
-    {
-        return $this->delay;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRawBody(): string
-    {
-        return $this->rawBody;
+        return $this->response;
     }
 }

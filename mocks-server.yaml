@@ -3,18 +3,22 @@ mocks:
   mime_type: application/json
   mocks:
     -
-        uri: /test
-        method: GET
-        delay: 5
-        status: 200
-        mime_type: application/json
-        raw_body: |
-          { "data": [ {"test" : 123456789, "test2" : 123456789 } ]}
+        request:
+          uri: /test
+          method: GET
+          delay: 5
+        response:
+          status: 404
+          mime_type: application/json
+          raw_body: |
+            { "data": [ {"test" : 123456789, "test2" : 123456789 } ]}
     -
-        uri: /login
-        method: GET
-        delay: 0
-        status: 200
-        "mime_type": application/json
-        raw_body: |
-          { "logged": true}
+        request:
+          uri: /login
+          method: GET
+          delay: 0
+        response:
+          status: 200
+          mime_type: application/json
+          raw_body: |
+            { "logged": true}
