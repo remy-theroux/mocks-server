@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Mocks\Server\Models;
@@ -38,5 +39,4 @@ final class Request
     {
         return $this->delay;
     }
-
 }

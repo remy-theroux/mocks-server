@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Mocks\Server\Config;
 
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Manage configuration conformity and default values
+ * Manage configuration conformity and default values.
  */
 class MocksServerConfiguration implements ConfigurationInterface
 {

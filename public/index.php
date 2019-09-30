@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require dirname(__DIR__).'/vendor/autoload.php';
@@ -8,16 +9,11 @@ use Monolog\Logger;
 use Amp\Log\StreamHandler;
 use Amp\Http\Server\Server;
 use Amp\Log\ConsoleFormatter;
+use Mocks\Server\Config\Loader;
 use Amp\ByteStream\ResourceOutputStream;
 use Mocks\Server\RequestHandler\RequestHandler;
-use Mocks\Server\Config\Loader;
 
 Amp\Loop::run(function () {
-    $servers = [
-        Socket\listen('0.0.0.0:1337'),
-        Socket\listen('[::]:1337'),
-    ];
-
     $logHandler = new StreamHandler(new ResourceOutputStream(\STDOUT));
     $logHandler->setFormatter(new ConsoleFormatter());
     $logger = new Logger('server');
@@ -27,6 +23,10 @@ Amp\Loop::run(function () {
     $mocks = $loader->loadConfig('mocks-server.yaml');
 
     $requestHandler = new RequestHandler($logger, $mocks);
+    $servers = [
+        Socket\listen('0.0.0.0:' . $mocks->getPort()),
+        Socket\listen('[::]:' . $mocks->getPort()),
+    ];
     $server = new Server($servers, $requestHandler, $logger);
     yield $server->start();
 

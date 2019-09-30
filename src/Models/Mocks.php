@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Mocks\Server\Models;
@@ -22,6 +23,9 @@ final class Mocks
         return $this->port;
     }
 
+    /**
+     * @return array|Mock[]
+     */
     public function getMocks(): array
     {
         return $this->mocks;

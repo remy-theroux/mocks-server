@@ -1,20 +1,22 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Mocks\Server\RequestHandler;
 
-use function Amp\call;
 use Amp\Delayed;
 use Amp\Failure;
-use Amp\Http\Server\Request;
-use Amp\Http\Server\RequestHandler as RequestHandlerInterface;
-use Amp\Http\Server\Response;
 use Amp\Promise;
 use Amp\Success;
-use Mocks\Server\Exception\NoMockFoundException;
+use function Amp\call;
+use Amp\Http\Server\Request;
+use const Grpc\STATUS_NOT_FOUND;
+use Psr\Log\LoggerInterface;
+use Amp\Http\Server\Response;
 use Mocks\Server\Models\Mock;
 use Mocks\Server\Models\Mocks;
-use Psr\Log\LoggerInterface;
+use Mocks\Server\Exception\NoMockFoundException;
+use Amp\Http\Server\RequestHandler as RequestHandlerInterface;
 
 final class RequestHandler implements RequestHandlerInterface
 {
@@ -23,6 +25,13 @@ final class RequestHandler implements RequestHandlerInterface
 
     /** @var Mocks */
     private $mocks;
+
+    private static $notFoundReponseBody = <<<JSON
+{
+    "error": "No mock found for request"
+}
+JSON;
+
 
     public function __construct(LoggerInterface $logger, Mocks $mocks)
     {
@@ -40,23 +49,31 @@ final class RequestHandler implements RequestHandlerInterface
         ]);
 
         $mocks = $this->filterMocksFromRequest($request);
-        if (0 === count($mocks)) {
-            return new Failure(new NoMockFoundException($request));
+        if (0 === \count($mocks)) {
+            return new Success(
+                new Response(
+                    404,
+                    [
+                        'content-type' => 'application/json',
+                    ],
+                    sprintf(self::$notFoundReponseBody)
+                )
+            );
         }
 
         /** @var Mock $mock */
         $mock = array_shift($mocks);
 
-        return call(function() use ($mock) {
-            yield new Delayed($mock->getDelay() * 1000);
+        return call(function () use ($mock) {
+            yield new Delayed($mock->getRequest()->getDelay() * 1000);
 
             return new Success(
                 new Response(
-                    $mock->getStatus(),
+                    $mock->getResponse()->getStatus(),
                     [
-                        'content-type' => $mock->getMimeType(),
+                        'content-type' => $mock->getResponse()->getMimeType(),
                     ],
-                    $mock->getRawBody()
+                    $mock->getResponse()->getRawBody()
                 )
             );
         });
@@ -64,9 +81,9 @@ final class RequestHandler implements RequestHandlerInterface
 
     private function filterMocksFromRequest(Request $request): ?array
     {
-        return array_filter($this->mocks->getMocks(), function(Mock $mock) use ($request) {
-            return $mock->getMethod() === $request->getMethod()
-                && $mock->getUri() === $request->getUri()->getPath();
+        return array_filter($this->mocks->getMocks(), function (Mock $mock) use ($request) {
+            return $mock->getRequest()->getMethod() === $request->getMethod()
+                && $mock->getRequest()->getUri() === $request->getUri()->getPath();
         });
     }
 }

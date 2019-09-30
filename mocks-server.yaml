@@ -5,7 +5,7 @@ mocks:
         request:
           uri: /test
           method: GET
-          delay: 5
+          delay: 2
         response:
           status: 404
           mime_type: application/json
