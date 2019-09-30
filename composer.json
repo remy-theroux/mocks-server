@@ -8,21 +8,24 @@
         }
     ],
     "require": {
+        "php": "^7.3",
         "amphp/http-server": "^1.0",
         "amphp/log": "^1.0",
         "symfony/config": "^4.2",
         "symfony/yaml": "^4.2",
         "symfony/serializer": "^4.2",
         "symfony/property-access": "^4.2",
-        "symfony/property-info": "^4.2"
+        "symfony/property-info": "^4.2",
+        "guzzlehttp/psr7": "^1.5",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
-        "behat/behat": "^3.5",
-        "phpunit/phpunit": "^8.0"
+        "behat/behat": "^3.5"
     },
     "autoload": {
         "psr-4": {
+            "Mocks\\Server\\Test\\": "features/bootstrap",
             "Mocks\\Server\\": "src/"
         }
     },
@@ -33,6 +36,7 @@
         ],
         "cs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes",
         "cs-fix": "php-cs-fixer fix -v --diff --allow-risky=yes",
-        "test": "bin/phpunit"
+        "phpunit": "vendor/bin/phpunit",
+        "behat": "vendor/bin/behat"
     }
 }
