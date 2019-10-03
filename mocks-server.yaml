@@ -2,22 +2,29 @@ mocks:
   port: 9000
   mocks:
     -
-        request:
-          uri: /test
-          method: GET
-          delay: 2
-        response:
-          status: 404
-          mime_type: application/json
-          raw_body: |
-            { "data": [ {"test" : 123456789, "test2" : 123456789 } ]}
+      request:
+        uri: /post200
+        method: POST
+        delay: 0
+      response:
+        status: 200
+        mime_type: application/json
+        raw_body: '{ "logged": true}'
     -
-        request:
-          uri: /login
-          method: GET
-          delay: 0
-        response:
-          status: 200
-          mime_type: application/json
-          raw_body: |
-            { "logged": true}
+      request:
+        uri: /get404
+        method: GET
+        delay: 2
+      response:
+        status: 404
+        mime_type: application/json
+        raw_body: '{ "data": [ {"test" : 123456789, "test2" : 123456789 } ]}'
+    -
+      request:
+        uri: /error500
+        method: PUT
+        delay: 0
+      response:
+        status: 500
+        mime_type: application/json
+        raw_body: '{ "errors": [ {"code" : 1234, "message" : "Internal server error" } ]}'
