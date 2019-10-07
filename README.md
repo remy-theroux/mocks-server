@@ -13,18 +13,6 @@ Then you can tests your requests on the specified port (localhost:9000 in the ex
 vendor/bin/behat
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [AMPHP Http server](https://amphp.org/http-server/) - An async http server in PHP

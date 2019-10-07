@@ -30,7 +30,7 @@ final class Loader
         try {
             $data = Yaml::parseFile($yamlFilePath);
         } catch (ParseException $exception) {
-            $this->logger->error('Error while parsing yaml file', [
+            $this->logger->error('Error while parsing mocks-server yaml configuration file', [
                 'error' => $exception->getMessage(),
             ]);
 

@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
+use Amp\ByteStream\ResourceOutputStream;
 use Amp\Socket;
-use Monolog\Logger;
 use Amp\Log\StreamHandler;
 use Amp\Http\Server\Server;
 use Amp\Log\ConsoleFormatter;
 use Mocks\Server\Config\Loader;
-use Amp\ByteStream\ResourceOutputStream;
 use Mocks\Server\RequestHandler\RequestHandler;
+use Monolog\Logger;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 Amp\Loop::run(function () {
     $logHandler = new StreamHandler(new ResourceOutputStream(\STDOUT));
@@ -21,6 +22,9 @@ Amp\Loop::run(function () {
 
     $loader = new Loader($logger);
     $mocks = $loader->loadConfig('mocks-server.yaml');
+    if (null === $mocks) {
+        throw new InvalidConfigurationException('Cannot load mocks-server configuration file');
+    }
 
     $requestHandler = new RequestHandler($logger, $mocks);
     $servers = [
