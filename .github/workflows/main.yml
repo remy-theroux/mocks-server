@@ -12,8 +12,8 @@ jobs:
     - name: Building docker image
       run: docker build . -t remy-theroux/mocks-server:test
     - name: Run docker instance
-      run: docker run -d remy-theroux/mocks-server:test
+      run: docker run -d -p 9000:9000 remy-theroux/mocks-server:test
     - name: Install dependencies
       run: composer install
     - name: Execute tests
-      run: vendor/bin/behat
+      run: vendor/bin/behat -v
