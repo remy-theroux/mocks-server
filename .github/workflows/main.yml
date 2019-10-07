@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Building docker image
+      run: docker build . -t remy-theroux/mocks-server:test
+    - name: Run docker instance
+      run: docker run -d remy-theroux/mocks-server:test vendor/bin/behat
