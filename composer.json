@@ -1,0 +1,42 @@
+{
+    "name": "remy-theroux/mocks-server",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Rémy Théroux",
+            "email": "remy.theroux@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "ext-pcntl": "^7.3",
+        "amphp/http-server": "^1.0",
+        "amphp/log": "^1.0",
+        "symfony/config": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/serializer": "^4.2",
+        "symfony/property-access": "^4.2",
+        "symfony/property-info": "^4.2",
+        "guzzlehttp/psr7": "^1.5",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "behat/behat": "^3.5",
+        "squizlabs/php_codesniffer": "^3.5",
+        "escapestudios/symfony2-coding-standard": "^3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mocks\\Server\\Test\\": "features/bootstrap",
+            "Mocks\\Server\\": "src/"
+        }
+    },
+    "scripts": {
+        "ci": [
+            "@phpcs",
+            "@behat"
+        ],
+        "phpcs": "./vendor/bin/phpcs --config-set installed_paths $PWD/vendor/escapestudios/symfony2-coding-standard,$PWD/vendor/remy-theroux/php-convention/phpcs &&./vendor/bin/phpcs --standard=ModerPHP  src",
+        "behat": "vendor/bin/behat"
+    }
+}

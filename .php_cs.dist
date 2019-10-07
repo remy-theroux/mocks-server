@@ -1,0 +1,43 @@
+<?php
+/*
+ * This document has been generated with
+ * https://mlocati.github.io/php-cs-fixer-configurator/?version=2.14#configurator
+ * you can change this configuration by importing this file.
+ */
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PSR1' => true,
+        '@PSR2' => true,
+        '@Symfony' => true,
+        // Each line of multi-line DocComments must have an asterisk [PSR-5] and must be aligned with the first one.
+        'align_multiline_comment' => true,
+        // Each element of an array must be indented exactly once.
+        'array_indentation' => true,
+        // PHP arrays should be declared using the configured syntax.
+        'array_syntax' => true,
+        // Using `isset($var) &&` multiple times should be done in one call.
+        'combine_consecutive_issets' => true,
+        // Calling `unset` on multiple items should be done in one call.
+        'combine_consecutive_unsets' => true,
+        // Comments with annotation should be docblock when used on structural elements.
+        'comment_to_phpdoc' => true,
+        // Remove extra spaces in a nullable typehint.
+        'compact_nullable_typehint' => true,
+        // Replaces `dirname(__FILE__)` expression with equivalent `__DIR__` constant.
+        'dir_constant' => true,
+        // Doctrine annotations must use configured operator for assignment in arrays.
+        'doctrine_annotation_array_assignment' => true,
+        // Doctrine annotations without arguments must use the configured syntax.
+        'doctrine_annotation_braces' => true,
+        // Doctrine annotations must be indented with four spaces.
+        'doctrine_annotation_indentation' => true,
+        // Fixes spaces in Doctrine annotations.
+        'doctrine_annotation_spaces' => true,
+    ])
+    ->setFinder(PhpCsFixer\Finder::create()
+        ->exclude('vendor')
+        ->in(__DIR__)
+    )
+;
