@@ -25,6 +25,8 @@ jobs:
         with:
           php-version: '7.3'
           coverage: none
+      - name: Setup GIT
+        uses: fnkr/github-action-git-bash@v1
       - name: Checkout branch
         uses: actions/checkout@v1
       - name: Execute tests
