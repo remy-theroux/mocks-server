@@ -4,7 +4,19 @@ on: [push]
 
 jobs:
   quality:
-
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: '7.3'
+          coverage: none
+      - name: Checkout branch
+        uses: actions/checkout@v1
+      - name: Install dependencies
+        uses: composer install
+      - name: Code style
+        uses: vendor/bin/phpcs --standard=ModernPhp src
   tests:
     runs-on: ubuntu-latest
     steps:
@@ -15,6 +27,8 @@ jobs:
           coverage: none
       - name: Checkout branch
         uses: actions/checkout@v1
+      - name: Code style
+        uses: vendor/bin/phpcs --standard=ModernPhp src
       - name: Execute tests
         run: composer test
   build:
