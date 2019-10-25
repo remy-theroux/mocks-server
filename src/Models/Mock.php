@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Mocks\Server\Models;
 
+/**
+ * Store a configured mock:
+ * - A matching request
+ * - An associated response that will be returned for the previous request
+ */
 final class Mock
 {
     /** @var Request */

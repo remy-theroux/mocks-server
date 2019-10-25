@@ -18,6 +18,9 @@ use Mocks\Server\Models\Mocks;
 use Mocks\Server\Exception\NoMockFoundException;
 use Amp\Http\Server\RequestHandler as RequestHandlerInterface;
 
+/**
+ * Handle requests receive on PHP server
+ */
 final class RequestHandler implements RequestHandlerInterface
 {
     /** @var LoggerInterface */
@@ -32,11 +35,13 @@ final class RequestHandler implements RequestHandlerInterface
 }
 JSON;
 
-
+    /**
+     * RequestHandler constructor.
+     */
     public function __construct(LoggerInterface $logger, Mocks $mocks)
     {
         $this->logger = $logger;
-        $this->mocks = $mocks;
+        $this->mocks  = $mocks;
     }
 
     /**
@@ -83,7 +88,7 @@ JSON;
     {
         return array_filter($this->mocks->getMocks(), function (Mock $mock) use ($request) {
             return $mock->getRequest()->getMethod() === $request->getMethod()
-                && $mock->getRequest()->getUri() === $request->getUri()->getPath();
+                   && $mock->getRequest()->getUri() === $request->getUri()->getPath();
         });
     }
 }

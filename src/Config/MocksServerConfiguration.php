@@ -15,7 +15,7 @@ class MocksServerConfiguration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mocks');
+        $rootNode    = $treeBuilder->root('mocks');
         $rootNode
             ->children()
                 ->integerNode('port')
