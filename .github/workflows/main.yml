@@ -3,15 +3,25 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  quality:
 
+  tests:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v1
-    - name: Building docker image
-      run: docker build . -t remy-theroux/mocks-server:test
-    - name: Install dependencies
-      run: composer install
-    - name: Execute tests
-      run: docker run -d -p 9000:9000 remy-theroux/mocks-server:test && vendor/bin/behat -v
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: '7.3'
+          coverage: none
+      - name: Checkout branch
+        uses: actions/checkout@v1
+      - name: Execute tests
+        run: composer test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Building docker image
+        run: docker build . -t remy-theroux/mocks-server:${GITHUB_REF##*/}
+      - name: Pushing docker image
+        run: docker push remy-theroux/mocks-server:${GITHUB_REF##*/}
