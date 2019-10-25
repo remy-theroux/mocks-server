@@ -1,11 +1,13 @@
 <?php
-
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Mocks\Server\Exception;
 
 use Amp\Http\Server\Request;
 
+/**
+ * Exception returned when a request does not match any configured mock
+ */
 class NoMockFoundException extends \Exception
 {
     /** @var Request */

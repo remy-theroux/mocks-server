@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Mocks\Server\Models;
 
+/**
+ * Store all configured mocks and root configurations
+ */
 final class Mocks
 {
     /** @var int */
@@ -14,7 +17,7 @@ final class Mocks
 
     public function __construct(int $port, array $mocks)
     {
-        $this->port = $port;
+        $this->port  = $port;
         $this->mocks = $mocks;
     }
 

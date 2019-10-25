@@ -1,0 +1,10 @@
+language: php
+php:
+  - 7.3
+services:
+  - docker
+before_script:
+  - composer install
+script:
+  - ./vendor/bin/phpcs --standard=ModernPHP src
+  - composer test

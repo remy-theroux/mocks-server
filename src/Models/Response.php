@@ -20,9 +20,9 @@ final class Response
 
     public function __construct(int $status, string $mimeType, string $rawBody)
     {
-        $this->status = $status;
+        $this->status   = $status;
         $this->mimeType = $mimeType;
-        $this->rawBody = $rawBody;
+        $this->rawBody  = $rawBody;
     }
 
     public function getStatus(): int

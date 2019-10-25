@@ -15,6 +15,9 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
+/**
+ * Manage configuration validation and loading into Models class
+ */
 final class Loader
 {
     /** @var LoggerInterface */
@@ -58,7 +61,7 @@ final class Loader
         );
 
         $arrayDenormalizer = new ArrayDenormalizer();
-        $serializer = new Serializer([$objectNormalizer, $arrayDenormalizer]);
+        $serializer        = new Serializer([$objectNormalizer, $arrayDenormalizer]);
 
         return $serializer->denormalize($data['mocks'], Mocks::class);
     }

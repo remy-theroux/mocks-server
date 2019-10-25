@@ -20,9 +20,9 @@ final class Request
 
     public function __construct(string $uri, string $method, int $delay)
     {
-        $this->uri = $uri;
+        $this->uri    = $uri;
         $this->method = $method;
-        $this->delay = $delay;
+        $this->delay  = $delay;
     }
 
     public function getUri(): string
