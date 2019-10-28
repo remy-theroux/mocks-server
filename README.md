@@ -1,4 +1,4 @@
-# Requests stubs [![Build Status](https://travis-ci.org/remy-theroux/mocks-server.svg?branch=master)](https://travis-ci.org/remy-theroux/mocks-server)
+# Requests stubs [![Build Status](https://travis-ci.org/remy-theroux/requests-stubs.svg?branch=master)](https://travis-ci.org/remy-theroux/requests-stubs)
 
 Stubs network requests by describing them and the expected responses (data, status, delay...).
 It can be useful for testing code behaviors in different real network situations and it make it
