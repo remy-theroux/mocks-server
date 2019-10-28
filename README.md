@@ -1,11 +1,14 @@
-# Mocks server
+# Requests stubs
 
-Mocks network requests, response data, status code, delay...
+Stubs network requests by describing them and the expected responses (data, status, delay...).
+It can be useful for testing code behaviors in different real network situations and it make it
+simple. 
 
 ## Getting Started
 
-Write a mocks-server.yaml file describing your mocks and run php public/index.php.
-Then you can tests your requests on the specified port (localhost:9000 in the example).
+Write a requests-stubs.yaml file configuring requests you want the server respond to and associated responses.
+Then you can tests your requests on the specified port (localhost:9000 in the example) by running php public/index.php.
+.
 
 ## Running the tests
 
@@ -26,7 +29,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Rémy Théroux** - *Initial work* - [remy-theroux](https://github.com/remy-theroux)
 
-See also the list of [contributors](https://github.com/remy-theroux/mocks-server/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/remy-theroux/requests-stubs/contributors) who participated in this project.
 
 ## License
 
