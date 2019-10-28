@@ -9,4 +9,4 @@ script:
   - ./vendor/bin/phpcs --standard=ModernPHP src
   - composer test
   - docker build . -t remy-theroux/requests-stubs:$TRAVIS_BRANCH
-  - docker push remy-theroux/requests-stubs:$TRAVIS_BRANCH
+  - docker push docker.io/remy-theroux/requests-stubs:$TRAVIS_BRANCH
