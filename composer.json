@@ -1,5 +1,5 @@
 {
-    "name": "remy-theroux/mocks-server",
+    "name": "remy-theroux/requests-stubs",
     "license": "MIT",
     "type": "project",
     "authors": [
@@ -34,11 +34,7 @@
         }
     },
     "scripts": {
-        "ci": [
-            "@phpcs",
-            "@test"
-        ],
         "phpcs": "./vendor/bin/phpcs --standard=ModernPhp src",
-        "test": "scripts/start-server.sh && vendor/bin/behat -v && scripts/stop-server.sh"
+        "test": "scripts/test.sh"
     }
 }

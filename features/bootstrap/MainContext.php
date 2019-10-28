@@ -59,9 +59,7 @@ class MainContext implements Context
         try {
             $this->client->send($this->request, $options);
         } catch (ClientException $exception) {
-
         } catch (ServerException $exception) {
-
         }
     }
 

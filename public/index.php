@@ -21,9 +21,9 @@ Amp\Loop::run(static function () {
     $logger->pushHandler($logHandler);
 
     $loader = new Loader($logger);
-    $mocks  = $loader->loadConfig('mocks-server.yaml');
+    $mocks  = $loader->loadConfig('requests-stubs.yaml');
     if (null === $mocks) {
-        throw new InvalidConfigurationException('Cannot load mocks-server configuration file');
+        throw new InvalidConfigurationException('Cannot load requests-stubs configuration file');
     }
 
     $requestHandler = new RequestHandler($logger, $mocks);
