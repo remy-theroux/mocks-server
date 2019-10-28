@@ -4,11 +4,27 @@ Stubs network requests by describing them and the expected responses (data, stat
 It can be useful for testing code behaviors in different real network situations and it make it
 simple. 
 
-## Getting Started
+## Usage
 
 Write a requests-stubs.yaml file configuring requests you want the server respond to and associated responses.
 Then you can tests your requests on the specified port (localhost:9000 in the example) by running php public/index.php.
-.
+
+### Docker
+
+Use it with docker, change the path of the volume where is your yaml configuration file. Replace listening port xxxx
+ depending on port configured in your yaml file.
+
+```shell script
+docker run -v /local/path/to/yaml/file:/usr/src/app -p 9000:xxxx remy-theroux/requests-stubs
+```
+
+### Locally
+
+Use it with php.
+
+```shell script
+php public/index.php
+```
 
 ## Running the tests
 
@@ -18,7 +34,7 @@ Tests are written with Behat, we run an instance of the server and then run expe
 - Use composer test to run via docker (used for CI). If you change port in requests-stubs.yml, don't forget to change
  it in test.sh
 
-```
+```shell script
 vendor/bin/behat
 ```
 
