@@ -53,8 +53,8 @@ JSON;
             'request' => $request,
         ]);
 
-        $mocks = $this->filterMocksFromRequest($request);
-        if (0 === \count($mocks)) {
+        $mock = $this->getMockFromRequest($request);
+        if (null === $mock) {
             return new Success(
                 new Response(
                     404,
@@ -65,9 +65,6 @@ JSON;
                 )
             );
         }
-
-        /** @var Mock $mock */
-        $mock = array_shift($mocks);
 
         return call(function () use ($mock) {
             yield new Delayed($mock->getRequest()->getDelay() * 1000);
@@ -84,11 +81,13 @@ JSON;
         });
     }
 
-    private function filterMocksFromRequest(Request $request): ?array
+    private function getMockFromRequest(Request $request): ?Mock
     {
-        return array_filter($this->mocks->getMocks(), function (Mock $mock) use ($request) {
+        $mocks = array_filter($this->mocks->getMocks(), function (Mock $mock) use ($request) {
             return $mock->getRequest()->getMethod() === $request->getMethod()
                    && $mock->getRequest()->getUri() === $request->getUri()->getPath();
         });
+
+        return array_shift($mocks);
     }
 }
