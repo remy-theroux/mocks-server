@@ -12,6 +12,12 @@ Then you can tests your requests on the specified port (localhost:9000 in the ex
 
 ## Running the tests
 
+Tests are written with Behat, we run an instance of the server and then run expected behavior with the requests-stubs
+.yml file. To run test you have two methods:
+- Run the server php public/index.php and then exec vendor/bin/behat
+- Use composer test to run via docker (used for CI). If you change port in requests-stubs.yml, don't forget to change
+ it in test.sh
+
 ```
 vendor/bin/behat
 ```
@@ -20,6 +26,7 @@ vendor/bin/behat
 
 * [AMPHP Http server](https://amphp.org/http-server/) - An async http server in PHP
 * [Symfony Config](https://symfony.com/doc/current/components/config.html) - A powerfull configuration component
+* [Behat](https://behat.org/en/latest/) - A behavior driven development framework
 
 ## Versioning
 
@@ -29,7 +36,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Rémy Théroux** - *Initial work* - [remy-theroux](https://github.com/remy-theroux)
 
-See also the list of [contributors](https://github.com/remy-theroux/requests-stubs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/remy-theroux/requests-stubs/contributors) who participated in
+ this project.
 
 ## License
 
